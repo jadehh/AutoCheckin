@@ -135,7 +135,7 @@ class Aliyundrive:
             'Content-Type': "application/json",
             'x-device-id': "73f2080d8b04af60a5e2a6fea067bd4216530f234407e289df2dbfa928ab6341",
             'x-canary': "client=web,app=other,version=v0.1.0",
-            'x-timestamp': "1716442762",
+            'x-timestamp': "{}".format(int(time.time())),
             'x-nonce': "1503DE69-78F6-4FFB-854B-24128977D6A0",
             'x-signature-v2': "28eba36c9acf01b84fa6c5e86c6c5926d1aa9cd9",
             'authorization': f'Bearer {access_token}'
