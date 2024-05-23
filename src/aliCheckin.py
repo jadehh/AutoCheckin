@@ -9,6 +9,7 @@
 import requests
 from src.aliyundrive_info import AliyundriveInfo
 from tenacity import retry, stop_after_attempt, wait_random, RetryError
+import time
 class Aliyundrive:
     """
     阿里云盘签到（自动领取奖励）
@@ -129,8 +130,16 @@ class Aliyundrive:
         url = 'https://member.aliyundrive.com/v1/activity/sign_in_reward'
         payload = {'signInDay': sign_day}
         params = {'_rx-s': 'mobile'}
-        headers = {'Authorization': f'Bearer {access_token}'}
-
+        headers = {
+            'User-Agent': "AliApp(AYSD/5.8.1) com.alicloud.smartdrive/5.8.1 Version/16.3.1 Channel/201200 Language/zh-Hans-CN /iOS Mobile/iPhone14,5",
+            'Content-Type': "application/json",
+            'x-device-id': "73f2080d8b04af60a5e2a6fea067bd4216530f234407e289df2dbfa928ab6341",
+            'x-canary': "client=web,app=other,version=v0.1.0",
+            'x-timestamp': "1716442762",
+            'x-nonce': "1503DE69-78F6-4FFB-854B-24128977D6A0",
+            'x-signature-v2': "28eba36c9acf01b84fa6c5e86c6c5926d1aa9cd9",
+            'authorization': f'Bearer {access_token}'
+        }
         response = requests.post(url, json=payload, params=params, headers=headers, timeout=5)
         data = response.json()
 
